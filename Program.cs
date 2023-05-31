@@ -2,6 +2,35 @@
 
 class Program
 {
+    class Pion
+    {
+        public string Symbole { get; } = "█";
+        public int PositionX { get; private set; }
+        public int PositionY { get; private set; }
+
+        public Pion()
+        {
+            PositionX = 0;
+            PositionY = 0;
+        }
+
+        public void Avance()
+        {
+            PositionY++;
+        }
+    }
+
+    static int LancerDe()
+    {
+        // Création d'un objet Random pour générer un nombre aléatoire
+        Random random = new Random();
+
+        // Génération d'un nombre aléatoire entre 1 et 6 inclus
+        int resultat = random.Next(1, 7);
+
+        return resultat;
+    }
+
     static void Main()
     {
         // Déclaration et initialisation du tableau 10x10
@@ -36,6 +65,23 @@ class Program
         tableau[6, 7] = "H";
         tableau[7, 7] = "H";
 
+        // Création d'un objet Pion
+        Pion pion = new Pion();
+
+        // Placer le pion dans le tableau à la position (0, 0)
+        tableau[0, 0] = pion.Symbole;
+
+        // Déplacement du pion vers la droite
+        int anciennePositionY = pion.PositionY;
+        pion.Avance();
+        int nouvellePositionY = pion.PositionY;
+
+        // Restaurer la valeur de la case précédente
+        tableau[0, anciennePositionY] = (anciennePositionY + 1).ToString();
+
+        // Mettre à jour la position du pion dans le tableau
+        tableau[0, nouvellePositionY] = pion.Symbole;
+
         // Trouver la longueur maximale parmi tous les éléments du tableau
         int maxLength = 0;
         for (int i = 0; i < tableau.GetLength(0); i++)
@@ -66,4 +112,6 @@ class Program
         Console.ReadKey();
     }
 }
+
+
 
