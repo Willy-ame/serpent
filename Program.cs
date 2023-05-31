@@ -16,6 +16,7 @@ class Program
 
         public void Avance()
         {
+            //PositionY+=LancerDe() ;
             PositionY++;
         }
     }
@@ -112,6 +113,4 @@ class Program
         Console.ReadKey();
     }
 }
-
-
 
